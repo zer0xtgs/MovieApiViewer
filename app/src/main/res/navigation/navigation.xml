@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation"
+            app:startDestination="@id/savedMoviesFragment">
+
+    <fragment android:id="@+id/savedMoviesFragment"
+              android:name="ui.saved.SavedMoviesFragment"
+              android:label="@string/saved_movies"
+              tools:layout="@layout/saved_movies_fragment"/>
+
+    <fragment android:id="@+id/searchWithTitleFragment"
+              android:name="ui.title.SearchWithTitleFragment"
+              android:label="@string/search_with_title"
+              tools:layout="@layout/search_with_title_fragment"/>
+
+    <fragment android:id="@+id/searchWithDirectorFragment"
+              android:name="ui.director.SearchWithDirectorFragment"
+              android:label="@string/search_with_director"
+              tools:layout="@layout/search_with_director_fragment"/>
+</navigation>

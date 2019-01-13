@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Netflix Roulette</string>
+    <string name="saved_movies">Saved Movies</string>
+    <string name="search_with_title">Search with title</string>
+    <string name="search_with_director">Search with director</string>
+    <string name="sourse_pic">sourse_pic</string>
 </resources>
