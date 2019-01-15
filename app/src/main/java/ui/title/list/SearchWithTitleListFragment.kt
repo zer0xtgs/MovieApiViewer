@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.R
 import kotlinx.android.synthetic.main.search_with_title_fragment.*
+import kotlinx.coroutines.launch
 import network.TheMovieDBApiService
-import network.responce.SearchByTitleResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import ui.base.ScopedFragment
 
-class SearchWithTitleFragment : Fragment() {
+class SearchWithTitleFragment : ScopedFragment() {
 
     companion object {
         fun newInstance() = SearchWithTitleFragment()
@@ -34,19 +31,24 @@ class SearchWithTitleFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(SearchWithTitleViewModel::class.java)
         // TODO: Use the ViewModel
 
-        val theMovieDBApiService = TheMovieDBApiService()
-        val searchByTitleResponse = theMovieDBApiService.getFilmByTitle("Aquaman")
-            .enqueue(object : Callback<SearchByTitleResponse> {
-                override fun onFailure(call: Call<SearchByTitleResponse>, t: Throwable) {
-                    textView.text = "failure"
-                }
+        val apiService = TheMovieDBApiService()
 
-                override fun onResponse(call: Call<SearchByTitleResponse>, response: Response<SearchByTitleResponse>) {
-                    textView.text = response.body().toString()
-                }
+        launch {
+            val response = apiService.getFilmByTitle("Aquaman").await()
+            textView.text = response.entries.first().toString()
+        }
 
-            })
-//        textView.text = searchByTitleResponse?.entries.toString()
+//        GlobalScope.async(Main) {
+//            textView.text = apiService.getFilmByTitle("Aquaman").await().entries.first().toString()
+//        }
+
+//        GlobalScope.launch(Dispatchers.Main) {
+//            val movieDeffered  = async(Dispatchers.Default) {
+//                apiService.getFilmByTitle("Aquaman")
+//            }
+//            val infoString = movieDeffered.await()
+//            textView.text = infoString.toString()
+//        }
     }
 
 }

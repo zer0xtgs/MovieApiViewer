@@ -3,7 +3,7 @@ package network.responce
 import com.google.gson.annotations.SerializedName
 
 
-data class SearchByTitleEntry(
+data class SearchByTitleFilmEntry(
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
