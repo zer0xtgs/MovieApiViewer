@@ -1,7 +1,7 @@
-package ui.title
+package ui.title.list
 
 import androidx.lifecycle.ViewModel;
 
-class SearchWithTitleViewModel : ViewModel() {
+class SearchWithTitleListViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

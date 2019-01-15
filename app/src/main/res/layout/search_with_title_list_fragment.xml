@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="ui.title.list.SearchWithTitleListFragment">
 
-    <TextView
-            android:id="@+id/textView"
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Search with title fragment"/>
+            tools:listitem="@layout/search_with_title_list_item">
+    </androidx.recyclerview.widget.RecyclerView>
 
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

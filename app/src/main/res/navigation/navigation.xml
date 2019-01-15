@@ -10,10 +10,10 @@
               android:label="@string/saved_movies"
               tools:layout="@layout/saved_movies_fragment"/>
 
-    <fragment android:id="@+id/searchWithTitleFragment"
-              android:name="ui.title.SearchWithTitleFragment"
+    <fragment android:id="@+id/searchWithTitleListFragment"
+              android:name="ui.title.list.SearchWithTitleListFragment"
               android:label="@string/search_with_title"
-              tools:layout="@layout/search_with_title_fragment"/>
+              tools:layout="@layout/search_with_title_list_fragment"/>
 
     <fragment android:id="@+id/searchWithDirectorFragment"
               android:name="ui.director.SearchWithDirectorFragment"

@@ -6,7 +6,7 @@
             android:icon="@drawable/ic_storage_black_24dp"
             android:title="@string/saved_movies"/>
     <item
-            android:id="@+id/searchWithTitleFragment"
+            android:id="@+id/searchWithTitleListFragment"
             android:title="@string/search_with_title"
             android:icon="@drawable/ic_search_black_24dp"/>
 

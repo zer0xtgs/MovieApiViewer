@@ -1,7 +1,8 @@
 package network
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.Deferred
 import network.responce.SearchByTitleResponse
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -19,12 +20,13 @@ interface TheMovieDBApiService {
     fun getFilmByTitle(
         @Query("query") title : String,
         @Query("api_key") key : String = API_KEY
-    ) : Call<SearchByTitleResponse>
+    ) : Deferred<SearchByTitleResponse>
 
     companion object {
         operator fun invoke() : TheMovieDBApiService {
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(TheMovieDBApiService::class.java)
