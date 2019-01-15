@@ -27,6 +27,18 @@ class SavedMoviesFragment : ScopedFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SavedMoviesViewModel::class.java)
         // TODO: Use the ViewModel
+
+//        val apiService = TheMovieDBApiService()
+//
+//        testTextView
+//
+//        launch {
+//            val movieInfo = apiService.getMovieInfo(297802).await().toString()
+//            testTextView.text = movieInfo
+//        }
+
+
+
     }
 
 }
