@@ -1,4 +1,4 @@
-package internal
+package com.android.netflixroulette.internal
 
 import kotlinx.coroutines.*
 

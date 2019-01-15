@@ -1,4 +1,4 @@
-package ui.saved
+package com.android.netflixroulette.ui.saved
 
 import androidx.lifecycle.ViewModel;
 

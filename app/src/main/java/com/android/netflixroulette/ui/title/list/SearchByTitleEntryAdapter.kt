@@ -1,4 +1,4 @@
-package ui.title.list
+package com.android.netflixroulette.ui.title.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.netflixroulette.R
-import data.network.response.SearchByTitleEntry
+import com.android.netflixroulette.network.response.SearchByTitleEntry
 import kotlinx.android.synthetic.main.search_with_title_list_item.view.*
 
 class SearchByTitleEntryAdapter(

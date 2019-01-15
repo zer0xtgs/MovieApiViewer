@@ -1,4 +1,4 @@
-package data.network.response
+package com.android.netflixroulette.network.response
 
 import com.google.gson.annotations.SerializedName
 

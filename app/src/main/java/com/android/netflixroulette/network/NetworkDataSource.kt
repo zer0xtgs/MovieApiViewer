@@ -1,7 +1,7 @@
-package data.network
+package com.android.netflixroulette.network
 
 import androidx.lifecycle.LiveData
-import data.network.response.SearchByTitleResponse
+import com.android.netflixroulette.network.response.SearchByTitleResponse
 
 interface NetworkDataSource {
     val downloadedSearchByTitleResponse: LiveData<SearchByTitleResponse>

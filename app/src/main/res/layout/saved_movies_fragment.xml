@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="ui.saved.SavedMoviesFragment">
+        tools:context="com.android.netflixroulette.ui.saved.SavedMoviesFragment">
 
     <TextView
             android:layout_width="match_parent"

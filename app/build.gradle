@@ -37,9 +37,9 @@ dependencies {
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment:$nav_version"
-    implementation "android.arch.navigation:navigation-ui:$nav_version"
+    implementation "android.arch.navigation:navigation-com.android.netflixroulette.ui:$nav_version"
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation "android.arch.navigation:navigation-com.android.netflixroulette.ui-ktx:$nav_version"
 
     // Network
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

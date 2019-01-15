@@ -1,9 +1,9 @@
-package data.network
+package com.android.netflixroulette.network
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import data.network.response.SearchByTitleResponse
+import com.android.netflixroulette.network.response.SearchByTitleResponse
 
 class NetworkDataSourceImpl(
     private val theMovieDBApiService: TheMovieDBApiService) : NetworkDataSource {

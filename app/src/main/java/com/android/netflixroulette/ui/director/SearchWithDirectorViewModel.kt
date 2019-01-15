@@ -1,4 +1,4 @@
-package ui.director
+package com.android.netflixroulette.ui.director
 
 import androidx.lifecycle.ViewModel;
 

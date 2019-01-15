@@ -6,17 +6,17 @@
             app:startDestination="@id/savedMoviesFragment">
 
     <fragment android:id="@+id/savedMoviesFragment"
-              android:name="ui.saved.SavedMoviesFragment"
+              android:name="com.android.netflixroulette.ui.saved.SavedMoviesFragment"
               android:label="@string/saved_movies"
               tools:layout="@layout/saved_movies_fragment"/>
 
     <fragment android:id="@+id/searchWithTitleListFragment"
-              android:name="ui.title.list.SearchWithTitleListFragment"
+              android:name="com.android.netflixroulette.ui.title.list.SearchByTitleListFragment"
               android:label="@string/search_with_title"
               tools:layout="@layout/search_with_title_list_fragment"/>
 
     <fragment android:id="@+id/searchWithDirectorFragment"
-              android:name="ui.director.SearchWithDirectorFragment"
+              android:name="com.android.netflixroulette.ui.director.SearchWithDirectorFragment"
               android:label="@string/search_with_director"
               tools:layout="@layout/search_with_director_fragment"/>
 </navigation>

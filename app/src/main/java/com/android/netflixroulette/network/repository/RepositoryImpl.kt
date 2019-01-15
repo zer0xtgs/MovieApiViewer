@@ -1,8 +1,8 @@
-package data.network.repository
+package com.android.netflixroulette.network.repository
 
 import androidx.lifecycle.LiveData
-import data.network.NetworkDataSource
-import data.network.response.SearchByTitleResponse
+import com.android.netflixroulette.network.NetworkDataSource
+import com.android.netflixroulette.network.response.SearchByTitleResponse
 
 class RepositoryImpl(
     private val networkDataSource: NetworkDataSource

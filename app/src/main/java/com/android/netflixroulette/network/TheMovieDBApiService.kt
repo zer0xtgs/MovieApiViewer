@@ -1,7 +1,7 @@
-package data.network
+package com.android.netflixroulette.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import data.network.response.SearchByTitleResponse
+import com.android.netflixroulette.network.response.SearchByTitleResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

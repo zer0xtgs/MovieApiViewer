@@ -1,4 +1,4 @@
-package ui.title.list
+package com.android.netflixroulette.ui.title.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,20 +8,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.netflixroulette.R
-import data.network.NetworkDataSourceImpl
-import data.network.TheMovieDBApiService
-import data.network.repository.RepositoryImpl
+import com.android.netflixroulette.network.NetworkDataSourceImpl
+import com.android.netflixroulette.network.TheMovieDBApiService
+import com.android.netflixroulette.network.repository.RepositoryImpl
+import com.android.netflixroulette.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.search_with_title_list_fragment.*
 import kotlinx.coroutines.launch
-import ui.base.ScopedFragment
 
-class SearchWithTitleListFragment : ScopedFragment() {
+class SearchByTitleListFragment : ScopedFragment() {
 
     private val apiService = TheMovieDBApiService()
     private val networkDataSource = NetworkDataSourceImpl(apiService)
     private val repository = RepositoryImpl(networkDataSource)
-    private val viewModelFactory = SearchWithTitleListViewModelFactory(repository)
-    private lateinit var viewModel: SearchWithTitleListViewModel
+    private val viewModelFactory = SearchByTitleListViewModelFactory(repository)
+    private lateinit var viewModel: SearchByTitleListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,22 +33,22 @@ class SearchWithTitleListFragment : ScopedFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(SearchWithTitleListViewModel::class.java)
+            .get(SearchByTitleListViewModel::class.java)
 
         bindUI()
     }
 
     private fun bindUI() = launch {
-        val searchByTitleList = viewModel.SearchByTitleEntryes.await()
+        val searchByTitleList = viewModel.searchByTitleEntries.await()
 
         recyclerView.adapter = SearchByTitleEntryAdapter(emptyList())
 
-        searchByTitleList.observe(this@SearchWithTitleListFragment, Observer {
+        searchByTitleList.observe(this@SearchByTitleListFragment, Observer {
             if (it == null) {
                 return@Observer
             } else {
                 recyclerView.apply {
-                    layoutManager = LinearLayoutManager(this@SearchWithTitleListFragment.context)
+                    layoutManager = LinearLayoutManager(this@SearchByTitleListFragment.context)
                     adapter = SearchByTitleEntryAdapter(it.entries)
                 }
             }

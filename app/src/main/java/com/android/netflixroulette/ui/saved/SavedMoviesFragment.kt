@@ -1,4 +1,4 @@
-package ui.saved
+package com.android.netflixroulette.ui.saved
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.R
-import ui.base.ScopedFragment
+import com.android.netflixroulette.ui.base.ScopedFragment
 
 class SavedMoviesFragment : ScopedFragment() {
 
