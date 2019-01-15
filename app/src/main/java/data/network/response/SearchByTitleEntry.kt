@@ -1,4 +1,4 @@
-package network.responce
+package data.network.response
 
 import com.google.gson.annotations.SerializedName
 

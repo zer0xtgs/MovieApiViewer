@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.netflixroulette.R
+import data.network.response.SearchByTitleEntry
 import kotlinx.android.synthetic.main.search_with_title_list_item.view.*
-import network.responce.SearchByTitleEntry
 
 class SearchByTitleEntryAdapter(
     private var entryList : List<SearchByTitleEntry>) : RecyclerView.Adapter<SearchByTitleEntryAdapter.ViewHolder>() {
@@ -20,7 +20,7 @@ class SearchByTitleEntryAdapter(
     override fun getItemCount() = entryList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.placeholder.text = entryList.elementAt(position).originalTitle
+        holder.placeholder.text = entryList.elementAt(position).toString()
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

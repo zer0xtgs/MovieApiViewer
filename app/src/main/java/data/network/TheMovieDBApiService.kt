@@ -1,8 +1,8 @@
-package network
+package data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import data.network.response.SearchByTitleResponse
 import kotlinx.coroutines.Deferred
-import network.responce.SearchByTitleResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -17,7 +17,7 @@ interface TheMovieDBApiService {
 
     // search by title
     @GET("search/movie")
-    fun getFilmByTitle(
+    fun getMovieByTitle(
         @Query("query") title : String,
         @Query("api_key") key : String = API_KEY
     ) : Deferred<SearchByTitleResponse>
