@@ -8,7 +8,7 @@ import com.android.netflixroulette.network.response.SearchByTitleResponse
 class RepositoryImpl(
     private val networkDataSource: NetworkDataSource
 ) : Repository {
-
+    
     override suspend fun getMovieByTitleList(title: String): LiveData<SearchByTitleResponse> {
         networkDataSource.fetchMoviesByTitle(title)
         return networkDataSource.downloadedSearchByTitleResponse
