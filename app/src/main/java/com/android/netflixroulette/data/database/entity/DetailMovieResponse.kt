@@ -1,11 +1,15 @@
-package com.android.netflixroulette.network.response
+package com.android.netflixroulette.data.database.entity
 
-import com.android.netflixroulette.data.db.entity.Genre
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.android.netflixroulette.data.database.entity.Genre
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "saved_movies")
 data class DetailMovieResponse(
-    val genres: List<Genre>,
+    @PrimaryKey
     val id: Long,
+    val genres: List<Genre>,
     @SerializedName("original_title")
     val originalTitle: String,
     val overview: String,
@@ -14,4 +18,5 @@ data class DetailMovieResponse(
     @SerializedName("release_date")
     val releaseDate: String,
     @SerializedName("vote_average")
-    val voteAverage: Double)
+    val voteAverage: Double) {
+}

@@ -1,7 +1,7 @@
 package com.android.netflixroulette.network.repository
 
 import androidx.lifecycle.LiveData
-import com.android.netflixroulette.network.response.DetailMovieResponse
+import com.android.netflixroulette.data.database.entity.DetailMovieResponse
 import com.android.netflixroulette.network.response.SearchByTitleResponse
 
 interface Repository {

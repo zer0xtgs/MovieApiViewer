@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.netflixroulette.network.repository.Repository
-import com.android.netflixroulette.network.response.DetailMovieResponse
+import com.android.netflixroulette.data.database.entity.DetailMovieResponse
 
 class MovieDetailViewModel(private val repository: Repository) : ViewModel() {
 

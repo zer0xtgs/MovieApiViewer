@@ -1,4 +1,4 @@
-package com.android.netflixroulette.data.db.entity
+package com.android.netflixroulette.data.database.entity
 
 data class Genre(
     val id: Int,
