@@ -9,20 +9,20 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.netflixroulette.R
-import com.android.netflixroulette.network.NetworkDataSourceImpl
-import com.android.netflixroulette.network.TheMovieDBApiService
-import com.android.netflixroulette.network.repository.RepositoryImpl
 import com.android.netflixroulette.network.response.SearchByTitleEntry
 import com.android.netflixroulette.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.search_with_title_list_fragment.*
 import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class SearchByTitleListFragment : ScopedFragment(), SearchByTitleEntryAdapter.Listener {
+class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEntryAdapter.Listener {
 
-    private val apiService = TheMovieDBApiService()
-    private val networkDataSource = NetworkDataSourceImpl(apiService)
-    private val repository = RepositoryImpl(networkDataSource)
-    private val viewModelFactory = SearchByTitleListViewModelFactory(repository)
+    override val kodein: Kodein by closestKodein()
+    private val viewModelFactory: SearchByTitleListViewModelFactory by instance()
+
     private lateinit var viewModel: SearchByTitleListViewModel
 
 

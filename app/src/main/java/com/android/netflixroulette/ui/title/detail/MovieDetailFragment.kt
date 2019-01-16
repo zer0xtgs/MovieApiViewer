@@ -6,19 +6,17 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.R
-import com.android.netflixroulette.network.NetworkDataSourceImpl
-import com.android.netflixroulette.network.TheMovieDBApiService
-import com.android.netflixroulette.network.repository.RepositoryImpl
 import com.android.netflixroulette.ui.base.ScopedFragment
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import kotlinx.coroutines.launch
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class MovieDetailFragment : ScopedFragment() {
+class MovieDetailFragment : ScopedFragment(), KodeinAware {
 
-    private val apiService = TheMovieDBApiService()
-    private val networkDataSource = NetworkDataSourceImpl(apiService)
-    private val repository = RepositoryImpl(networkDataSource)
-    private val viewModelFactory = MovieDetailViewModelFactory(repository)
+    override val kodein by closestKodein()
+    private val viewModelFactory: MovieDetailViewModelFactory by instance()
     private lateinit var viewModel: MovieDetailViewModel
 
     override fun onCreateView(
@@ -29,14 +27,12 @@ class MovieDetailFragment : ScopedFragment() {
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MovieDetailViewModel::class.java)
 
         bindUI()
-
     }
 
     private fun bindUI() = launch {
