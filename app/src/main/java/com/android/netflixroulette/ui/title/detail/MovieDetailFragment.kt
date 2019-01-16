@@ -42,7 +42,7 @@ class MovieDetailFragment : ScopedFragment() {
     private fun bindUI() = launch {
         viewModel.getDetailMovieInfo(arguments!!.getLong("id"))
 
-        viewModel.detailMovieInfo.observe(this@MovieDetailFragment, Observer {
+        viewModel.detailMovieResponse.observe(this@MovieDetailFragment, Observer {
             if (it == null) return@Observer
             test_detail_textview.text = it.toString()
         })
@@ -54,8 +54,9 @@ class MovieDetailFragment : ScopedFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        Toast.makeText(context, "Saved..", Toast.LENGTH_LONG).show()
-
+        when (item!!.itemId) {
+            R.id.save_button -> Toast.makeText(context, "Saved..", Toast.LENGTH_LONG).show()
+        }
         return super.onOptionsItemSelected(item)
     }
 }

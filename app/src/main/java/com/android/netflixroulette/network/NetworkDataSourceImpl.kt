@@ -3,7 +3,7 @@ package com.android.netflixroulette.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.android.netflixroulette.data.db.entity.DetailMovieResponse
+import com.android.netflixroulette.network.response.DetailMovieResponse
 import com.android.netflixroulette.network.response.SearchByTitleResponse
 
 class NetworkDataSourceImpl(

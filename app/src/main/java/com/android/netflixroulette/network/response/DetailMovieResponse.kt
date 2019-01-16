@@ -1,5 +1,6 @@
-package com.android.netflixroulette.data.db.entity
+package com.android.netflixroulette.network.response
 
+import com.android.netflixroulette.data.db.entity.Genre
 import com.google.gson.annotations.SerializedName
 
 data class DetailMovieResponse(
