@@ -7,8 +7,9 @@
         tools:context=".ui.title.detail.MovieDetailFragment">
 
     <TextView
+            android:id="@+id/test_detail_textview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:text="Movie Details Placeholder"/>
 
 </FrameLayout>

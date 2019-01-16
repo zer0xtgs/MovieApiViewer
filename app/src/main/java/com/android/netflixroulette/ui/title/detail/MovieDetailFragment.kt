@@ -1,19 +1,17 @@
 package com.android.netflixroulette.ui.title.detail
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.R
+import com.android.netflixroulette.network.TheMovieDBApiService
+import com.android.netflixroulette.ui.base.ScopedFragment
+import kotlinx.android.synthetic.main.movie_detail_fragment.*
+import kotlinx.coroutines.launch
 
-class MovieDetailFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = MovieDetailFragment()
-    }
+class MovieDetailFragment : ScopedFragment() {
 
     private lateinit var viewModel: MovieDetailViewModel
 
@@ -28,6 +26,15 @@ class MovieDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MovieDetailViewModel::class.java)
         // TODO: Use the ViewModel
-    }
 
+        val id  = arguments!!.getLong("id")
+
+        val apiService = TheMovieDBApiService()
+
+        launch {
+            val movieInfo = apiService.getMovieInfo(id).await().toString()
+            test_detail_textview.text = movieInfo
+        }
+
+    }
 }

@@ -13,10 +13,20 @@
     <fragment android:id="@+id/searchWithTitleListFragment"
               android:name="com.android.netflixroulette.ui.title.list.SearchByTitleListFragment"
               android:label="@string/search_with_title"
-              tools:layout="@layout/search_with_title_list_fragment"/>
+              tools:layout="@layout/search_with_title_list_fragment">
+        <action android:id="@+id/action_searchByTitle_to_movieDetail"
+                app:destination="@id/movieDetailFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
 
     <fragment android:id="@+id/searchWithDirectorFragment"
               android:name="com.android.netflixroulette.ui.director.SearchWithDirectorFragment"
               android:label="@string/search_with_director"
               tools:layout="@layout/search_with_director_fragment"/>
+    <fragment android:id="@+id/movieDetailFragment"
+              android:name="com.android.netflixroulette.ui.title.detail.MovieDetailFragment"
+              android:label="movie_detail_fragment" tools:layout="@layout/movie_detail_fragment">
+        <argument android:name="id" app:argType="long"/>
+    </fragment>
 </navigation>
