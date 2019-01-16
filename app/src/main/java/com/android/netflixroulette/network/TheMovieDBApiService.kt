@@ -1,6 +1,6 @@
 package com.android.netflixroulette.network
 
-import com.android.netflixroulette.network.response.DetailMovieResponse
+import com.android.netflixroulette.data.db.entity.DetailMovieResponse
 import com.android.netflixroulette.network.response.SearchByTitleResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred

@@ -42,25 +42,22 @@ class SearchByTitleListFragment : ScopedFragment(), SearchByTitleEntryAdapter.Li
     }
 
     private fun bindUI() = launch {
-        val searchByTitleList = viewModel.searchByTitleEntries.await()
+        //todo take Title form input text
+        viewModel.getMovieByTitle("Aquaman")
 
+        viewModel.searchByTitleEntries.observe(this@SearchByTitleListFragment, Observer {
+            if (it == null) return@Observer
 
-
-        searchByTitleList.observe(this@SearchByTitleListFragment, Observer {
-            if (it == null) {
-                return@Observer
-            } else {
-                recyclerView.apply {
-                    layoutManager = LinearLayoutManager(this@SearchByTitleListFragment.context)
-                    adapter = SearchByTitleEntryAdapter(it.entries, this@SearchByTitleListFragment)
-                }
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(this@SearchByTitleListFragment.context)
+                adapter = SearchByTitleEntryAdapter(it.entries, this@SearchByTitleListFragment)
             }
         })
     }
 
     override fun onClick(item: SearchByTitleEntry) {
-            this.findNavController().
-                navigate(SearchByTitleListFragmentDirections.
-                    actionSearchByTitleToMovieDetail(item.id))
+        this.findNavController().navigate(
+            SearchByTitleListFragmentDirections.actionSearchByTitleToMovieDetail(item.id)
+        )
     }
 }
