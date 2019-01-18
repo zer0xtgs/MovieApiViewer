@@ -36,7 +36,7 @@ class MovieDetailFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun bindUI() = launch {
-        viewModel.getDetailMovieInfo(arguments!!.getLong("id"))
+        viewModel.detailMovieResponse.value ?: viewModel.getDetailMovieInfo(arguments!!.getLong("id"))
 
         viewModel.detailMovieResponse.observe(this@MovieDetailFragment, Observer {
             if (it == null) return@Observer

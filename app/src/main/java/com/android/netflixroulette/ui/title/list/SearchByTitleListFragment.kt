@@ -42,10 +42,11 @@ class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEn
     }
 
     private fun bindUI() = launch {
-        //todo take Title form input text
-        viewModel.getMovieByTitle("Aquaman")
+        setSearchLisener()
 
-        viewModel.searchByTitleEntries.observe(this@SearchByTitleListFragment, Observer {
+        val searchByTitleResponse = viewModel.searchByTitleEntries
+
+        searchByTitleResponse.observe(this@SearchByTitleListFragment, Observer {
             if (it == null) return@Observer
 
             recyclerView.apply {
@@ -59,5 +60,16 @@ class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEn
         this.findNavController().navigate(
             SearchByTitleListFragmentDirections.actionSearchByTitleToMovieDetail(item.id)
         )
+    }
+
+    private fun setSearchLisener() {
+        search_button.setOnClickListener {
+            val inputText = input_textview.text.toString()
+
+            launch {
+                viewModel.getMovieByTitle(inputText)
+                bindUI()
+            }
+        }
     }
 }
