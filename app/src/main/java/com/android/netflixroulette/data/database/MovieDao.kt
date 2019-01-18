@@ -10,7 +10,7 @@ import com.android.netflixroulette.data.database.entity.DetailMovieResponse
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(movieEntry: DetailMovieResponse)
+    fun saveMovie(movieEntry: DetailMovieResponse)
 
     @Query("SELECT * FROM saved_movies")
     fun getSavedMoviesList(): LiveData<List<DetailMovieResponse>>

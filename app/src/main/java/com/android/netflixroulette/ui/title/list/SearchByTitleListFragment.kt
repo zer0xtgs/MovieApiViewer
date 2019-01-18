@@ -24,7 +24,7 @@ class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEn
     private val viewModelFactory: SearchByTitleListViewModelFactory by instance()
 
     private lateinit var viewModel: SearchByTitleListViewModel
-
+    private var myAdapter = SearchByTitleEntryAdapter(this@SearchByTitleListFragment)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,18 +41,19 @@ class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEn
         bindUI()
     }
 
-    private fun bindUI() = launch {
-        setSearchLisener()
+    private fun bindUI() {
+        setSearchListener()
 
-        val searchByTitleResponse = viewModel.searchByTitleEntries
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@SearchByTitleListFragment.context)
+            adapter = myAdapter
+            setHasFixedSize(true)
+        }
 
-        searchByTitleResponse.observe(this@SearchByTitleListFragment, Observer {
+            viewModel.searchByTitleEntries.observe(this@SearchByTitleListFragment, Observer {
             if (it == null) return@Observer
 
-            recyclerView.apply {
-                layoutManager = LinearLayoutManager(this@SearchByTitleListFragment.context)
-                adapter = SearchByTitleEntryAdapter(it.entries, this@SearchByTitleListFragment)
-            }
+            myAdapter.setList(it.entries)
         })
     }
 
@@ -62,13 +63,12 @@ class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEn
         )
     }
 
-    private fun setSearchLisener() {
+    private fun setSearchListener() {
         search_button.setOnClickListener {
             val inputText = input_textview.text.toString()
 
             launch {
                 viewModel.getMovieByTitle(inputText)
-                bindUI()
             }
         }
     }

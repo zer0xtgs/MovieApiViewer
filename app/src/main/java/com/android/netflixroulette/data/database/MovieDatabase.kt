@@ -31,6 +31,8 @@ abstract class MovieDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 MovieDatabase::class.java, "movies.db")
+                    //todo
+                .fallbackToDestructiveMigration()
                 .build()
     }
 

@@ -4,20 +4,34 @@ import androidx.lifecycle.LiveData
 import com.android.netflixroulette.data.database.MovieDao
 import com.android.netflixroulette.data.database.entity.DetailMovieResponse
 import com.android.netflixroulette.network.NetworkDataSource
-import com.android.netflixroulette.network.response.SearchByTitleResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RepositoryImpl(
     private val networkDataSource: NetworkDataSource,
-    private val movieDao : MovieDao
+    private val movieDao: MovieDao
 ) : Repository {
 
-    override suspend fun getMovieByTitleList(title: String): LiveData<SearchByTitleResponse> {
+    private val searchByTitleResponse = networkDataSource.downloadedSearchByTitleResponse
+    private val detailMovieResponse = networkDataSource.downloadedDetailMovieResponse
+
+    override fun getMovieByTitleResponse() = searchByTitleResponse
+    override fun getDetailMovieInfoResponse() = detailMovieResponse
+
+    override suspend fun getMovieByTitleList(title: String) =
         networkDataSource.fetchMoviesByTitle(title)
-        return networkDataSource.downloadedSearchByTitleResponse
+
+    override suspend fun getDetailMovieInfo(id: Long) =
+        networkDataSource.fetchMovieDetailInfo(id)
+
+    override fun persistDetailMovie(detailMovieInfo: DetailMovieResponse) {
+        GlobalScope.launch(Dispatchers.IO) {
+            movieDao.saveMovie(detailMovieInfo)
+        }
     }
 
-    override suspend fun getDetailMovieInfo(id: Long): LiveData<DetailMovieResponse> {
-        networkDataSource.fetchMovieDetailInfo(id)
-        return networkDataSource.downloadedDetailMovieResponse
+    override fun getSavedMoviesList(): LiveData<List<DetailMovieResponse>> {
+        return movieDao.getSavedMoviesList()
     }
 }
