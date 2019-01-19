@@ -6,9 +6,9 @@
             app:startDestination="@id/savedMoviesFragment">
 
     <fragment android:id="@+id/savedMoviesFragment"
-              android:name="com.android.netflixroulette.ui.saved.SavedMoviesFragment"
+              android:name="com.android.netflixroulette.ui.saved.list.SavedMoviesListFragment"
               android:label="@string/saved_movies"
-              tools:layout="@layout/saved_movies_fragment"/>
+              tools:layout="@layout/saved_movies_list_fragment"/>
 
     <fragment android:id="@+id/searchWithTitleListFragment"
               android:name="com.android.netflixroulette.ui.title.list.SearchByTitleListFragment"

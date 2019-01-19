@@ -10,7 +10,7 @@ import com.android.netflixroulette.data.database.entity.GenreConverter
 
 @Database(
     entities = [DetailMovieResponse::class],
-    version = 1
+    version = 2
 )
 
 @TypeConverters(GenreConverter::class)
@@ -31,7 +31,7 @@ abstract class MovieDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext,
                 MovieDatabase::class.java, "movies.db")
-                    //todo
+                    //todo remove on release
                 .fallbackToDestructiveMigration()
                 .build()
     }
