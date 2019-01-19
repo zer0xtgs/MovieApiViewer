@@ -7,7 +7,7 @@ import com.android.netflixroulette.network.NetworkDataSourceImpl
 import com.android.netflixroulette.network.TheMovieDBApiService
 import com.android.netflixroulette.network.repository.Repository
 import com.android.netflixroulette.network.repository.RepositoryImpl
-import com.android.netflixroulette.old_ui.ui_v2.view_model.SharedViewModelFactory
+import com.android.netflixroulette.ui.view_model.SharedViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule

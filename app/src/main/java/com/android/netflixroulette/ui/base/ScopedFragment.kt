@@ -1,4 +1,4 @@
-package com.android.netflixroulette.old_ui.base
+package com.android.netflixroulette.ui.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

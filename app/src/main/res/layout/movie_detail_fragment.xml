@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".old_ui.ui_v2.detail.MovieDetailFragment">
+        tools:context=".ui.detail.MovieDetailFragment">
 
     <TextView
             android:id="@+id/movie_detail_placeholder"

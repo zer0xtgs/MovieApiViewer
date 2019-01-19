@@ -1,4 +1,4 @@
-package com.android.netflixroulette.old_ui.ui_v2.view_model
+package com.android.netflixroulette.ui.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel;

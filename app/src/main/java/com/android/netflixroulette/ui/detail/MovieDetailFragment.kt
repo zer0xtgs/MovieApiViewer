@@ -1,4 +1,4 @@
-package com.android.netflixroulette.old_ui.ui_v2.detail
+package com.android.netflixroulette.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.R
-import com.android.netflixroulette.old_ui.base.ScopedFragment
-import com.android.netflixroulette.old_ui.ui_v2.view_model.SharedViewModel
-import com.android.netflixroulette.old_ui.ui_v2.view_model.SharedViewModelFactory
+import com.android.netflixroulette.ui.base.ScopedFragment
+import com.android.netflixroulette.ui.view_model.SharedViewModel
+import com.android.netflixroulette.ui.view_model.SharedViewModelFactory
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware

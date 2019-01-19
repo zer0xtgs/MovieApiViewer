@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.R
-import com.android.netflixroulette.old_ui.base.ScopedFragment
+import com.android.netflixroulette.ui.base.ScopedFragment
 
 class SearchWithDirectorFragment : ScopedFragment() {
 

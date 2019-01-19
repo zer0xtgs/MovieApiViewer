@@ -1,4 +1,4 @@
-package com.android.netflixroulette.old_ui.ui_v2.list
+package com.android.netflixroulette.ui.list
 
 import android.view.LayoutInflater
 import android.view.View

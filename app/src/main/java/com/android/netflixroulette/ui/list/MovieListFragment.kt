@@ -1,4 +1,4 @@
-package com.android.netflixroulette.old_ui.ui_v2.list
+package com.android.netflixroulette.ui.list
 
 import android.os.Bundle
 import android.util.Log
@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.netflixroulette.R
 import com.android.netflixroulette.data.database.entity.Movie
-import com.android.netflixroulette.old_ui.base.ScopedFragment
-import com.android.netflixroulette.old_ui.ui_v2.view_model.SharedViewModel
-import com.android.netflixroulette.old_ui.ui_v2.view_model.SharedViewModelFactory
+import com.android.netflixroulette.ui.base.ScopedFragment
+import com.android.netflixroulette.ui.view_model.SharedViewModel
+import com.android.netflixroulette.ui.view_model.SharedViewModelFactory
 import kotlinx.android.synthetic.main.movie_list_fragment.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware

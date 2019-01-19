@@ -6,10 +6,10 @@
             app:startDestination="@id/movieListFragment">
 
     <fragment android:id="@+id/movieDetailFragment"
-              android:name="com.android.netflixroulette.old_ui.ui_v2.detail.MovieDetailFragment"
-              android:label="movie_detail_fragment" tools:layout="@layout/movie_detail_fragment"/>
+              android:name="com.android.netflixroulette.ui.detail.MovieDetailFragment"
+              android:label="put movie title here" tools:layout="@layout/movie_detail_fragment"/>
     <fragment android:id="@+id/movieListFragment"
-              android:name="com.android.netflixroulette.old_ui.ui_v2.list.MovieListFragment"
+              android:name="com.android.netflixroulette.ui.list.MovieListFragment"
               tools:layout="@layout/movie_list_fragment" android:label="Saved Movies">
         <action android:id="@+id/action_movieList_to_movieDetail"
                 app:destination="@id/movieDetailFragment" app:enterAnim="@anim/nav_default_enter_anim"
