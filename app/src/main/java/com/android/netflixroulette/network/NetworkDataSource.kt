@@ -1,13 +1,11 @@
 package com.android.netflixroulette.network
 
 import androidx.lifecycle.LiveData
-import com.android.netflixroulette.data.database.entity.DetailMovieResponse
-import com.android.netflixroulette.network.response.SearchByTitleResponse
+import com.android.netflixroulette.network.response.MovieResponse
 
 interface NetworkDataSource {
-    val downloadedSearchByTitleResponse: LiveData<SearchByTitleResponse>
-    val downloadedDetailMovieResponse: LiveData<DetailMovieResponse>
+    val downloadedMovieResponse: LiveData<MovieResponse>
 
-    suspend fun fetchMoviesByTitle(title : String)
-    suspend fun fetchMovieDetailInfo(id : Long)
+    suspend fun fetchMoviesByTitle(title: String)
+
 }

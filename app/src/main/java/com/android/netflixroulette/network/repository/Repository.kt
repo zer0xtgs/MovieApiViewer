@@ -1,16 +1,16 @@
 package com.android.netflixroulette.network.repository
 
 import androidx.lifecycle.LiveData
-import com.android.netflixroulette.data.database.entity.DetailMovieResponse
-import com.android.netflixroulette.network.response.SearchByTitleResponse
+import com.android.netflixroulette.data.database.entity.Movie
+import com.android.netflixroulette.network.response.MovieResponse
 
 interface Repository {
-    suspend fun getMovieByTitleList(title : String)
-    suspend fun getDetailMovieInfo(id : Long)
+    val searchByTitleResponse: LiveData<MovieResponse>
 
-    fun getMovieByTitleResponse() : LiveData<SearchByTitleResponse>
-    fun getDetailMovieInfoResponse() : LiveData<DetailMovieResponse>
+    // network
+    suspend fun getMovieByTitleList(title: String)
 
-    fun persistDetailMovie(detailMovieInfo : DetailMovieResponse)
-    fun getSavedMoviesList() : LiveData<List<DetailMovieResponse>>
+    // db
+    fun saveMovie(movie: Movie)
+    fun getSavedMoviesList(): LiveData<List<Movie>>
 }

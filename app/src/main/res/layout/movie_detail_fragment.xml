@@ -4,12 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.title.detail.MovieDetailFragment">
+        tools:context=".old_ui.ui_v2.detail.MovieDetailFragment">
 
     <TextView
-            android:id="@+id/test_detail_textview"
+            android:id="@+id/movie_detail_placeholder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Movie Details Placeholder"/>
+            android:text="Hello"/>
 
 </FrameLayout>
