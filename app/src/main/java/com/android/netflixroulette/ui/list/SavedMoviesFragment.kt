@@ -20,13 +20,13 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class MovieListFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Listener {
+class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Listener {
 
     override val kodein: Kodein by closestKodein()
     private val viewModelFactory: SharedViewModelFactory by instance()
 
     private lateinit var viewModel: SharedViewModel
-    private var movieListAdapter = MovieListAdapter(this@MovieListFragment)
+    private var movieListAdapter = MovieListAdapter(this@SavedMoviesFragment)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,12 +55,12 @@ class MovieListFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Listen
 
     private fun bindUI() {
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MovieListFragment.context)
+            layoutManager = LinearLayoutManager(this@SavedMoviesFragment.context)
             adapter = movieListAdapter
             setHasFixedSize(true)
         }
 
-        viewModel.savedMoviesList.observe(this@MovieListFragment, Observer {
+        viewModel.savedMoviesList.observe(this@SavedMoviesFragment, Observer {
             if (it == null) return@Observer
             // TODO debug
             Log.d("debug", "savedMoviesList observer called")
@@ -73,8 +73,8 @@ class MovieListFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Listen
         viewModel.setSelectedMovie(item)
         this.findNavController()
             .navigate(
-                MovieListFragmentDirections
-                    .actionMovieListToMovieDetail()
+                SavedMoviesFragmentDirections
+                    .actionSavedMoviesToMovieDetail()
             )
     }
 }

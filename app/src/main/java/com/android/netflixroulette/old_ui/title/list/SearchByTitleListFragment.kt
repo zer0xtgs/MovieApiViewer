@@ -19,13 +19,13 @@
 //import org.kodein.di.android.x.closestKodein
 //import org.kodein.di.generic.instance
 //
-//class SearchByTitleListFragment : ScopedFragment(), KodeinAware, SearchByTitleEntryAdapter.Listener {
+//class SearchByTitleFragment : ScopedFragment(), KodeinAware, SearchByTitleEntryAdapter.Listener {
 //
 //    override val kodein: Kodein by closestKodein()
 //    private val viewModelFactory: SearchByTitleListViewModelFactory by instance()
 //
 //    private lateinit var viewModel: SearchByTitleListViewModel
-//    private var myAdapter = SearchByTitleEntryAdapter(this@SearchByTitleListFragment)
+//    private var myAdapter = SearchByTitleEntryAdapter(this@SearchByTitleFragment)
 //
 //    override fun onCreateView(
 //        inflater: LayoutInflater, container: ViewGroup?,
@@ -46,12 +46,12 @@
 //        setSearchListener()
 //
 //        recyclerView.apply {
-//            layoutManager = LinearLayoutManager(this@SearchByTitleListFragment.context)
+//            layoutManager = LinearLayoutManager(this@SearchByTitleFragment.context)
 //            adapter = myAdapter
 //            setHasFixedSize(true)
 //        }
 //
-//            viewModel.searchByTitleEntries.observe(this@SearchByTitleListFragment, Observer {
+//            viewModel.searchByTitleEntries.observe(this@SearchByTitleFragment, Observer {
 //            if (it == null) return@Observer
 //
 //            myAdapter.setList(it.entries)

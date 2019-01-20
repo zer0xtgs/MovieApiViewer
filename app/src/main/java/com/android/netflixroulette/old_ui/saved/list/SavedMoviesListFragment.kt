@@ -14,7 +14,7 @@
 //import org.kodein.di.android.x.closestKodein
 //import org.kodein.di.generic.instance
 //
-//class SavedMoviesListFragment : ScopedFragment(), KodeinAware {
+//class SavedMoviesFragment : ScopedFragment(), KodeinAware {
 //
 //    override val kodein by closestKodein()
 //    private val viewModelFactory: SavedMoviesListViewModelFactory by instance()
@@ -39,12 +39,12 @@
 //    private fun bindUI() {
 //
 //        saved_list_recycler_view.apply {
-//            layoutManager = LinearLayoutManager(this@SavedMoviesListFragment.context)
+//            layoutManager = LinearLayoutManager(this@SavedMoviesFragment.context)
 //            adapter = myAdapter
 //            setHasFixedSize(true)
 //        }
 //
-//        viewModel.savedMoviesList.observe(this@SavedMoviesListFragment, Observer {
+//        viewModel.savedMoviesList.observe(this@SavedMoviesFragment, Observer {
 //            if (it == null) return@Observer
 //
 //            myAdapter.setList(it)

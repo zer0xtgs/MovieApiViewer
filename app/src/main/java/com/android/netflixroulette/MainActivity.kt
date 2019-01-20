@@ -5,16 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var drawerLayout : DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var navigationView: NavigationView
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,12 +27,17 @@ class MainActivity : AppCompatActivity() {
 
         navigationView = findViewById(R.id.navView)
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout )
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.savedMoviesFragment, R.id.searchByTitleFragment, R.id.searchByDirectorFragment),
+            drawerLayout
+        )
+
         NavigationUI.setupWithNavController(navigationView, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.NavHostFragment)
-        return NavigationUI.navigateUp(navController, drawerLayout)
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
     }
 }

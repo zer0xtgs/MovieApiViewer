@@ -6,12 +6,13 @@
             android:icon="@drawable/ic_storage_black_24dp"
             android:title="@string/saved_movies"/>
     <item
-            android:id="@+id/searchWithTitleListFragment"
+            android:id="@+id/searchByTitleFragment"
             android:title="@string/search_with_title"
             android:icon="@drawable/ic_search_black_24dp"/>
 
     <item
-            android:id="@+id/searchWithDirectorFragment"
+            android:id="@+id/searchByDirectorFragment"
             android:title="@string/search_with_director"
             android:icon="@drawable/ic_search_black_24dp"/>
+
 </menu>

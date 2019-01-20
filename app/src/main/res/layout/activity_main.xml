@@ -13,11 +13,6 @@
             android:layout_height="match_parent"
             tools:openDrawer="start">
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
             <fragment
                     android:id="@+id/NavHostFragment"
                     android:name="androidx.navigation.fragment.NavHostFragment"
@@ -25,8 +20,6 @@
                     android:layout_height="match_parent"
                     app:defaultNavHost="true"
                     app:navGraph="@navigation/navigation"/>
-
-        </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navView"
@@ -37,6 +30,5 @@
                 app:headerLayout="@layout/nav_header"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
-
 
 </LinearLayout>
