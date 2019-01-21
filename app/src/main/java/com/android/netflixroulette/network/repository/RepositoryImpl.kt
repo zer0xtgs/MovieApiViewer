@@ -1,11 +1,9 @@
 package com.android.netflixroulette.network.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.android.netflixroulette.data.database.MovieDao
 import com.android.netflixroulette.data.database.entity.Movie
 import com.android.netflixroulette.network.NetworkDataSource
-import com.android.netflixroulette.network.response.MovieResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -15,13 +13,10 @@ class RepositoryImpl(
     private val movieDao: MovieDao
 ) : Repository {
 
-    private val _searchByTitleResponse = MutableLiveData<MovieResponse>()
-    override val searchByTitleResponse: LiveData<MovieResponse>
-        get() = _searchByTitleResponse
+    override fun getSearchByTitleResponse() = networkDataSource.downloadedMovieResponse
 
     override suspend fun getMovieByTitleList(title: String) {
         networkDataSource.fetchMoviesByTitle(title)
-        _searchByTitleResponse.postValue(networkDataSource.downloadedMovieResponse.value)
     }
 
     override fun saveMovie(movie: Movie) {

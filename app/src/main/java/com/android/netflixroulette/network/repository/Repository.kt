@@ -5,7 +5,8 @@ import com.android.netflixroulette.data.database.entity.Movie
 import com.android.netflixroulette.network.response.MovieResponse
 
 interface Repository {
-    val searchByTitleResponse: LiveData<MovieResponse>
+
+    fun getSearchByTitleResponse() : LiveData<MovieResponse>
 
     // network
     suspend fun getMovieByTitleList(title: String)

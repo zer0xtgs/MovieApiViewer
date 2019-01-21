@@ -2,19 +2,23 @@ package com.android.netflixroulette.ui.list
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.netflixroulette.R
 import com.android.netflixroulette.data.database.entity.Movie
+import com.android.netflixroulette.hideKeyboard
 import com.android.netflixroulette.ui.base.ScopedFragment
 import com.android.netflixroulette.ui.view_model.SharedViewModel
 import com.android.netflixroulette.ui.view_model.SharedViewModelFactory
 import kotlinx.android.synthetic.main.movie_list_fragment.*
+import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -32,6 +36,7 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = "Search by title"
         return inflater.inflate(R.layout.movie_list_fragment, container, false)
     }
 
@@ -43,12 +48,11 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
         } ?: throw Exception("Invalid Activity")
 
         bindUI()
-
+        initSearchInputListener()
     }
 
     private fun bindUI() {
-        input_textview.visibility = View.VISIBLE
-        search_button.visibility = View.VISIBLE
+        input.visibility = View.VISIBLE
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@SearchByTitleFragment.context)
@@ -56,21 +60,51 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
             setHasFixedSize(true)
         }
 
-        viewModel.savedMoviesList.observe(this@SearchByTitleFragment, Observer {
+        viewModel.searchByTitleResponse.observe(this@SearchByTitleFragment, Observer {
             if (it == null) return@Observer
             // TODO debug
-            Log.d("debug", "savedMoviesList observer called")
-            movieListAdapter.setList(it)
+            Log.d("debug", "searchByTitleResponse observer called")
+            movieListAdapter.setList(it.entries)
         })
     }
 
+    private fun initSearchInputListener() {
+        input.setOnEditorActionListener { view: View, actionId: Int, _: KeyEvent? ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                doSearch(view)
+                true
+            } else {
+                false
+            }
+        }
+        input.setOnKeyListener { view: View, keyCode: Int, event: KeyEvent ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                doSearch(view)
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun doSearch(v: View) {
+        val inputText = input.text.toString()
+        v.hideKeyboard()
+        launch {
+            viewModel.getMovieByTitle(inputText)
+        }
+    }
+
     override fun onMovieItemClickListener(item: Movie) {
+        // todo
         Log.d("debug", "click")
         viewModel.setSelectedMovie(item)
+        viewModel.setTitle(item.originalTitle)
+        view!!.hideKeyboard()
         this.findNavController()
             .navigate(
                 SearchByTitleFragmentDirections
-                    .actionSearchByTitleToMovieDetail()
+                    .actionSearchByTitleToSearchByDetail()
             )
     }
 }

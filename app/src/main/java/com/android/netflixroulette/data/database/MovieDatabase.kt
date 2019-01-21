@@ -10,7 +10,7 @@ import com.android.netflixroulette.data.database.entity.Movie
 
 @Database(
     entities = [Movie::class],
-    version = 1
+    version = 2
 )
 
 @TypeConverters(ListConverter::class)
@@ -35,7 +35,7 @@ abstract class MovieDatabase : RoomDatabase() {
                 MovieDatabase::class.java, "movies.db"
             )
                 //todo remove on release
-//                .fallbackToDestructiveMigration()
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }

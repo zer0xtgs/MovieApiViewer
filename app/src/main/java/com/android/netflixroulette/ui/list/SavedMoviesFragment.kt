@@ -28,10 +28,12 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
     private lateinit var viewModel: SharedViewModel
     private var movieListAdapter = MovieListAdapter(this@SavedMoviesFragment)
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = "Saved Movies"
         return inflater.inflate(R.layout.movie_list_fragment, container, false)
     }
 
@@ -44,13 +46,6 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
 
         bindUI()
 
-        populateDB()
-    }
-
-    private fun populateDB() {
-        viewModel.saveMovie(Movie(1, "description 1", listOf(), "Aquaman", "/path", "2018", 8.2))
-        viewModel.saveMovie(Movie(2, "description 2", listOf(), "Superman", "/path", "2018", 8.2))
-        viewModel.saveMovie(Movie(3, "description 3", listOf(), "Batman", "/path", "2018", 8.2))
     }
 
     private fun bindUI() {
@@ -71,10 +66,11 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
     override fun onMovieItemClickListener(item: Movie) {
         Log.d("debug", "click")
         viewModel.setSelectedMovie(item)
+        viewModel.setTitle(item.originalTitle)
         this.findNavController()
             .navigate(
                 SavedMoviesFragmentDirections
-                    .actionSavedMoviesToMovieDetail()
+                    .actionSavedMoviesToSavedDetail()
             )
     }
 }

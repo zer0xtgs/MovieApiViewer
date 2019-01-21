@@ -8,7 +8,7 @@
         android:layout_width="match_parent">
 
     <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawlerLayout"
+            android:id="@+id/drawerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:openDrawer="start">
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                app:menu="@menu/navdrawler_menu"
+                app:menu="@menu/navdrawer_menu"
                 app:headerLayout="@layout/nav_header"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>

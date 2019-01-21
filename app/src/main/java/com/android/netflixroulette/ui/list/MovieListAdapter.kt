@@ -13,12 +13,7 @@ class MovieListAdapter(
     private val clickListener: Listener
 ) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
-    var entryList: List<Movie> = mutableListOf(
-// TODO remove
-//        Movie(1, "description 1", listOf(), "Aquaman", "/path", "2018", 8.2),
-//        Movie(1, "description 2", listOf(), "Superman", "/path", "2018", 4.3),
-//        Movie(1, "description 3", listOf(), "Batman", "/path", "2018", 7.3)
-    )
+    var entryList: List<Movie> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_list_item, parent, false)
@@ -26,7 +21,7 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.placeholder.text = entryList.elementAt(position).toString()
+        holder.placeholder.text = entryList.elementAt(position).originalTitle
         holder.itemView.setOnClickListener {
             clickListener.onMovieItemClickListener(entryList.elementAt(position))
         }

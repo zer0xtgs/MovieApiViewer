@@ -13,7 +13,7 @@
 //import org.kodein.di.android.x.closestKodein
 //import org.kodein.di.generic.instance
 //
-//class MovieDetailFragment : ScopedFragment(), KodeinAware {
+//class SearchByDetailFragment : ScopedFragment(), KodeinAware {
 //
 //    override val kodein by closestKodein()
 //    private val viewModelFactory: MovieDetailViewModelFactory by instance()
@@ -38,7 +38,7 @@
 //    }
 //
 //    private fun bindUI() {
-//        viewModel.detailMovieResponse.observe(this@MovieDetailFragment, Observer {
+//        viewModel.detailMovieResponse.observe(this@SearchByDetailFragment, Observer {
 //            if (it == null) return@Observer
 //            test_detail_textview.text = it.toString()
 //        })
