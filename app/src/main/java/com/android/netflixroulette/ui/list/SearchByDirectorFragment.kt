@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.netflixroulette.R
-import com.android.netflixroulette.data.database.entity.Movie
 import com.android.netflixroulette.hideKeyboard
+import com.android.netflixroulette.network.response.Director
 import com.android.netflixroulette.ui.base.ScopedFragment
 import com.android.netflixroulette.ui.view_model.SharedViewModel
 import com.android.netflixroulette.ui.view_model.SharedViewModelFactory
@@ -24,13 +24,13 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class SearchByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Listener {
+class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdapter.Listener {
 
     override val kodein: Kodein by closestKodein()
     private val viewModelFactory: SharedViewModelFactory by instance()
 
     private lateinit var viewModel: SharedViewModel
-    private var movieListAdapter = MovieListAdapter(this@SearchByDirectorFragment)
+    private var directorListAdapter = DirectorListAdapter(this@SearchByDirectorFragment)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,15 +56,15 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@SearchByDirectorFragment.context)
-            adapter = movieListAdapter
+            adapter = directorListAdapter
             setHasFixedSize(true)
         }
 
-        viewModel.searchByTitleResponse.observe(this@SearchByDirectorFragment, Observer {
+        viewModel.searchDirectorResponse.observe(this@SearchByDirectorFragment, Observer {
             if (it == null) return@Observer
             // TODO debug
             Log.d("debug", "SearchByDirectorFragment observer called")
-            movieListAdapter.setList(it.entries)
+            directorListAdapter.setList(it.entries)
         })
     }
 
@@ -91,20 +91,34 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
         val inputText = input.text.toString()
         v.hideKeyboard()
         launch {
-            viewModel.getMovieByTitle(inputText)
+            viewModel.getDirector(inputText)
         }
     }
 
-    override fun onMovieItemClickListener(item: Movie) {
+    override fun onMovieItemClickListener(item: Director) {
         // todo
+        // take director id
+        // make search person by id combined credits
+        // take crew response
+        // filter by director
+
+        //launch
+//        viewModel.searchMoviesByDirectorId(item.id)
+            // launch
+        launch {
+            viewModel.getMovieByDirectorList(item.id)
+        }
+
         Log.d("debug", "click")
-        viewModel.setSelectedMovie(item)
-        viewModel.setTitle(item.originalTitle)
+//        viewModel.setSelectedDirector(item)
+        viewModel.setTitle(item.name)
         view!!.hideKeyboard()
         this.findNavController()
             .navigate(
                 SearchByDirectorFragmentDirections
-                    .actionSearchByDirectorToSearchByDetail()
+                        // todo
+                        // action to films by director
+                    .actionSearchByDirectorToMoviesByDirector()
             )
     }
 }

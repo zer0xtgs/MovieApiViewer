@@ -5,11 +5,29 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.netflixroulette.data.database.entity.Movie
 import com.android.netflixroulette.network.repository.Repository
+import com.android.netflixroulette.network.response.DirectorResponse
 import com.android.netflixroulette.network.response.MovieResponse
+import com.android.netflixroulette.network.response.MoviesByDirectorResponse
 
 class SharedViewModel(
     private val repository: Repository
 ) : ViewModel() {
+
+    val getMovieByDirectorResponse: LiveData<MoviesByDirectorResponse>
+        get() = repository.getSearchByDirectorResponse()
+
+//    val selectedDirector = MutableLiveData<Director>()
+//
+//    fun setSelectedDirector(director: Director) {
+//        selectedDirector.value = director
+//    }
+
+    suspend fun getDirector(name: String) = repository.getDirector(name)
+
+    suspend fun getMovieByDirectorList(id : Long) = repository.getMovieByDirectorList(id)
+
+    val searchDirectorResponse: LiveData<DirectorResponse>
+        get() = repository.getDirectorResponse()
 
     val searchByTitleResponse: LiveData<MovieResponse>
         get() = repository.getSearchByTitleResponse()

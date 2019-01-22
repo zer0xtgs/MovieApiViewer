@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.netflixroulette.R
-import com.android.netflixroulette.data.database.entity.Movie
+import com.android.netflixroulette.network.response.Director
 import kotlinx.android.synthetic.main.search_with_title_list_item.view.*
 
-class MovieListAdapter(
+class DirectorListAdapter(
     private val clickListener: Listener
-) : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<DirectorListAdapter.ViewHolder>() {
 
-    var entryList: List<Movie> = mutableListOf()
+    var entryList: List<Director> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_list_item, parent, false)
@@ -21,7 +21,7 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.placeholder.text = entryList.elementAt(position).originalTitle
+        holder.placeholder.text = entryList.elementAt(position).name
         holder.itemView.setOnClickListener {
             clickListener.onMovieItemClickListener(entryList.elementAt(position))
         }
@@ -29,22 +29,16 @@ class MovieListAdapter(
 
     override fun getItemCount() = entryList.size
 
-    fun setList(entryList : List<Movie>){
+    fun setList(entryList : List<Director>){
         this.entryList = entryList
         notifyDataSetChanged()
     }
-
-    fun setFlteredList(entryList : List<Movie>){
-        this.entryList = entryList.map { it }.filter { it.job.equals("director", true) && it.originalTitle != null }
-        notifyDataSetChanged()
-    }
-
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val placeholder: TextView = itemView.placeholder_text_view
     }
 
     interface Listener {
-        fun onMovieItemClickListener(item: Movie)
+        fun onMovieItemClickListener(item: Director)
     }
 }

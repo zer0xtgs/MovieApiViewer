@@ -1,6 +1,5 @@
 package com.android.netflixroulette.network.repository
 
-import androidx.lifecycle.LiveData
 import com.android.netflixroulette.data.database.MovieDao
 import com.android.netflixroulette.data.database.entity.Movie
 import com.android.netflixroulette.network.NetworkDataSource
@@ -13,11 +12,25 @@ class RepositoryImpl(
     private val movieDao: MovieDao
 ) : Repository {
 
-    override fun getSearchByTitleResponse() = networkDataSource.downloadedMovieResponse
+//    map { it }.filter { it.job.equals("director", true) }
 
-    override suspend fun getMovieByTitleList(title: String) {
+    override fun getSearchByTitleResponse() =
+        networkDataSource.downloadedMoviesResponse
+
+    override fun getSearchByDirectorResponse() =
+        networkDataSource.downloadedMoviesByDirectorResponse
+
+    override fun getDirectorResponse() =
+        networkDataSource.downloadedDirectorResponse
+
+    override suspend fun getMovieByTitleList(title: String) =
         networkDataSource.fetchMoviesByTitle(title)
-    }
+
+    override suspend fun getMovieByDirectorList(id: Long) =
+        networkDataSource.fetchMoviesByDirector(id)
+
+    override suspend fun getDirector(name: String) =
+        networkDataSource.fetchDirector(name)
 
     override fun saveMovie(movie: Movie) {
         GlobalScope.launch(Dispatchers.IO) {
@@ -25,28 +38,6 @@ class RepositoryImpl(
         }
     }
 
-    override fun getSavedMoviesList(): LiveData<List<Movie>> = movieDao.getSavedMoviesList()
+    override fun getSavedMoviesList() =
+        movieDao.getSavedMoviesList()
 }
-
-
-//    private val searchByTitleResponse = networkDataSource.downloadedMovieResponse
-//    private val detailMovieResponse = networkDataSource.downloadedDetailMovieResponse
-//
-//    override fun getMovieByTitleResponse() = searchByTitleResponse
-//    override fun getDetailMovieInfoResponse() = detailMovieResponse
-//
-//    override suspend fun getMovieByTitleList(title: String) =
-//        networkDataSource.fetchMoviesByTitle(title)
-//
-//    override suspend fun getDetailMovieInfo(id: Long) =
-//        networkDataSource.fetchMovieDetailInfo(id)
-//
-//    override fun persistDetailMovie(detailMovieInfo: DetailMovieResponse) {
-//        GlobalScope.launch(Dispatchers.IO) {
-//            movieDao.saveMovie(detailMovieInfo)
-//        }
-//    }
-//
-//    override fun getSavedMoviesList(): LiveData<List<DetailMovieResponse>> {
-//        return movieDao.getSavedMoviesList()
-//    }

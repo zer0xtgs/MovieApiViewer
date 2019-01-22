@@ -27,10 +27,16 @@
     <fragment android:id="@+id/searchByDirectorFragment"
               android:name="com.android.netflixroulette.ui.list.SearchByDirectorFragment"
               tools:layout="@layout/movie_list_fragment">
-        <action android:id="@+id/action_searchByDirector_to_searchByDetail"
-                app:destination="@id/searchByDetailFragment"/>
+        <action android:id="@+id/action_searchByDirector_to_moviesByDirector"
+                app:destination="@id/moviesByDirectorFragment"/>
     </fragment>
     <fragment
             android:name="com.android.netflixroulette.ui.detail.SavedDetailFragment"
             tools:layout="@layout/movie_detail_fragment" android:id="@+id/savedDetailFragment"/>
+    <fragment android:id="@+id/moviesByDirectorFragment"
+              android:name="com.android.netflixroulette.ui.list.MoviesByDirectorFragment"
+    >
+        <action android:id="@+id/action_moviesByDirector_to_searchByDetail"
+                app:destination="@id/searchByDetailFragment"/>
+    </fragment>
 </navigation>
