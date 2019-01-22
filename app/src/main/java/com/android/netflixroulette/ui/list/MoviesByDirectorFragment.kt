@@ -60,7 +60,7 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
             if (it == null) return@Observer
             // TODO debug
             Log.d("debug", "searchByTitleResponse observer called")
-            movieListAdapter.setFlteredList(it.entries)
+            movieListAdapter.setFilteredList(it.entries)
         })
 //        movieListAdapter.setList(viewModel.getMovieByDirectorResponse)
     }

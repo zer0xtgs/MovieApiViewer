@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.netflixroulette.R
 import com.android.netflixroulette.network.response.Director
-import kotlinx.android.synthetic.main.search_with_title_list_item.view.*
+import kotlinx.android.synthetic.main.movie_list_item.view.*
 
 class DirectorListAdapter(
     private val clickListener: Listener

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.netflixroulette.R
 import com.android.netflixroulette.data.database.entity.Movie
-import kotlinx.android.synthetic.main.search_with_title_list_item.view.*
+import kotlinx.android.synthetic.main.movie_list_item.view.*
 
 class MovieListAdapter(
     private val clickListener: Listener
@@ -34,8 +34,10 @@ class MovieListAdapter(
         notifyDataSetChanged()
     }
 
-    fun setFlteredList(entryList : List<Movie>){
-        this.entryList = entryList.map { it }.filter { it.job.equals("director", true) && it.originalTitle != null }
+    fun setFilteredList(entryList : List<Movie>){
+        this.entryList = entryList
+            .map { it }
+            .filter { it.job.equals("director", true) && it.originalTitle != null }
         notifyDataSetChanged()
     }
 
