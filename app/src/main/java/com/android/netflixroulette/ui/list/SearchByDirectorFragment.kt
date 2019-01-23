@@ -54,7 +54,7 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
     private fun bindUI() {
         input.visibility = View.VISIBLE
 
-        recyclerView.apply {
+        recycler_view.apply {
             layoutManager = LinearLayoutManager(this@SearchByDirectorFragment.context)
             adapter = directorListAdapter
             setHasFixedSize(true)

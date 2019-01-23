@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.android.netflixroulette.GlideApp
 import com.android.netflixroulette.R
 import com.android.netflixroulette.ui.base.ScopedFragment
 import com.android.netflixroulette.ui.view_model.SharedViewModel
@@ -38,7 +39,18 @@ class SearchByDetailFragment : ScopedFragment(), KodeinAware {
 
         viewModel.selectedMovie.observe(this, Observer {
             activity?.title = it.originalTitle
-            movie_detail_placeholder.text = it.toString()
+
+            GlideApp.with(this)
+                .load("https://image.tmdb.org/t/p/w200" + it.posterPath)
+                .override(500, 500)
+                .centerCrop()
+                .into(poster_detail)
+
+            release_detail.text = it.releaseDate
+            rating_detail.text = it.voteAverage.toString()
+            director_detail.text = "TODO"
+            summary_detail.text = it.overview
+
         })
 
     }

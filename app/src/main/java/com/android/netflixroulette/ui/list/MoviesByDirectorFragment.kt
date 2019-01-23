@@ -1,5 +1,6 @@
 package com.android.netflixroulette.ui.list
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.android.netflixroulette.R
 import com.android.netflixroulette.data.database.entity.Movie
 import com.android.netflixroulette.hideKeyboard
@@ -40,6 +41,12 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        if (activity!!.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            recycler_view.layoutManager = GridLayoutManager(context, 1)
+        } else {
+            recycler_view.layoutManager = GridLayoutManager(context, 2)
+        }
+
         viewModel = activity?.run {
             ViewModelProviders.of(this, viewModelFactory).get(SharedViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
@@ -48,10 +55,8 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
     }
 
     private fun bindUI() {
-//        input.visibility = View.VISIBLE
 
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MoviesByDirectorFragment.context)
+        recycler_view.apply {
             adapter = movieListAdapter
             setHasFixedSize(true)
         }
