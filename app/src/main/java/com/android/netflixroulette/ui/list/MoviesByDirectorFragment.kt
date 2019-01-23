@@ -2,7 +2,6 @@ package com.android.netflixroulette.ui.list
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-//todo
+
 class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Listener {
 
     override val kodein: Kodein by closestKodein()
@@ -63,18 +62,12 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
 
         viewModel.getMovieByDirectorResponse.observe(this@MoviesByDirectorFragment, Observer {
             if (it == null) return@Observer
-            // TODO debug
-            Log.d("debug", "searchByTitleResponse observer called")
             movieListAdapter.setFilteredList(it.entries)
         })
-//        movieListAdapter.setList(viewModel.getMovieByDirectorResponse)
     }
 
     override fun onMovieItemClickListener(item: Movie) {
-        // todo
-        Log.d("debug", "click")
         viewModel.setSelectedMovie(item)
-        // todo remove?
         viewModel.setTitle(item.originalTitle)
         view!!.hideKeyboard()
         this.findNavController()

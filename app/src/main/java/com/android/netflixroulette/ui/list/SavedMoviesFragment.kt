@@ -2,7 +2,6 @@ package com.android.netflixroulette.ui.list
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,16 +62,12 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
 
         viewModel.savedMoviesList.observe(this@SavedMoviesFragment, Observer {
             if (it == null) return@Observer
-            // TODO debug
-            Log.d("debug", "savedMoviesList observer called")
             movieListAdapter.setList(it)
         })
     }
 
     override fun onMovieItemClickListener(item: Movie) {
-        Log.d("debug", "click")
         viewModel.setSelectedMovie(item)
-        // todo remove?
         viewModel.setTitle(item.originalTitle)
         this.findNavController()
             .navigate(

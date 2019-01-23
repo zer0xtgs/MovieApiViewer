@@ -2,7 +2,6 @@ package com.android.netflixroulette.ui.list
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -68,8 +67,6 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
 
         viewModel.searchByTitleResponse.observe(this@SearchByTitleFragment, Observer {
             if (it == null) return@Observer
-            // TODO debug
-            Log.d("debug", "searchByTitleResponse observer called")
             movieListAdapter.setList(it.entries)
         })
     }
@@ -102,8 +99,6 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
     }
 
     override fun onMovieItemClickListener(item: Movie) {
-        // todo
-        Log.d("debug", "click")
         viewModel.setSelectedMovie(item)
         viewModel.setTitle(item.originalTitle)
         view!!.hideKeyboard()

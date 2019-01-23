@@ -17,8 +17,6 @@ class NetworkDataSourceImpl(
 
     override suspend fun fetchMoviesByTitle(title: String) {
         try {
-            //TODO debug
-            Log.d("Network", "fetchMoviesByTitle called")
             val fetchedMoviesByTitle = theMovieDBApiService
                 .getMovieByTitle(title)
                 .await()
@@ -37,8 +35,6 @@ class NetworkDataSourceImpl(
 
     override suspend fun fetchDirector(name: String) {
         try {
-            //TODO debug
-            Log.d("Network", "fetchMoviesByTitle called")
             val fetchedDirectors = theMovieDBApiService
                 .getDirector(name)
                 .await()

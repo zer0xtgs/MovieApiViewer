@@ -1,7 +1,6 @@
 package com.android.netflixroulette.ui.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +51,7 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
     }
 
     private fun bindUI() {
+        input.hint = "enter director name"
         input.visibility = View.VISIBLE
 
         recycler_view.apply {
@@ -62,8 +62,6 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
 
         viewModel.searchDirectorResponse.observe(this@SearchByDirectorFragment, Observer {
             if (it == null) return@Observer
-            // TODO debug
-            Log.d("debug", "SearchByDirectorFragment observer called")
             directorListAdapter.setList(it.entries)
         })
     }
@@ -96,28 +94,15 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
     }
 
     override fun onMovieItemClickListener(item: Director) {
-        // todo
-        // take director id
-        // make search person by id combined credits
-        // take crew response
-        // filter by director
-
-        //launch
-//        viewModel.searchMoviesByDirectorId(item.id)
-            // launch
         launch {
             viewModel.getMovieByDirectorList(item.id)
         }
 
-        Log.d("debug", "click")
-//        viewModel.setSelectedDirector(item)
         viewModel.setTitle(item.name)
         view!!.hideKeyboard()
         this.findNavController()
             .navigate(
                 SearchByDirectorFragmentDirections
-                        // todo
-                        // action to films by director
                     .actionSearchByDirectorToMoviesByDirector()
             )
     }
