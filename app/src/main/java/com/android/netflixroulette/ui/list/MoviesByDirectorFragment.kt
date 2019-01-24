@@ -53,6 +53,7 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
     }
 
     private fun bindUI() {
+        group_loading.visibility = View.VISIBLE
 
         recycler_view.apply {
             adapter = movieListAdapter
@@ -61,7 +62,9 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
 
         viewModel.getMovieByDirectorResponse.observe(this@MoviesByDirectorFragment, Observer {
             if (it == null) return@Observer
+
             movieListAdapter.setFilteredList(it.entries)
+            group_loading.visibility = View.INVISIBLE
         })
     }
 

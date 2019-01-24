@@ -61,6 +61,7 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
 
         viewModel.searchDirectorResponse.observe(this@SearchByDirectorFragment, Observer {
             if (it == null) return@Observer
+            group_loading.visibility = View.INVISIBLE
             directorListAdapter.setList(it.entries)
         })
     }
@@ -86,6 +87,7 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
 
     private fun doSearch(v: View) {
         val inputText = input.text.toString()
+        group_loading.visibility = View.VISIBLE
         v.hideKeyboard()
         launch {
             viewModel.getDirector(inputText)

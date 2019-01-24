@@ -54,6 +54,7 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
     }
 
     private fun bindUI() {
+        group_loading.visibility = View.VISIBLE
         recycler_view.apply {
             adapter = movieListAdapter
             setHasFixedSize(true)
@@ -61,6 +62,7 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
 
         viewModel.savedMoviesList.observe(this@SavedMoviesFragment, Observer {
             if (it == null) return@Observer
+            group_loading.visibility = View.INVISIBLE
             movieListAdapter.setList(it)
         })
     }

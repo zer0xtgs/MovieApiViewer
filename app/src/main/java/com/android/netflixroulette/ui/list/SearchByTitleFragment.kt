@@ -66,6 +66,8 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
 
         viewModel.searchByTitleResponse.observe(this@SearchByTitleFragment, Observer {
             if (it == null) return@Observer
+
+            group_loading.visibility = View.INVISIBLE
             movieListAdapter.setList(it.entries)
         })
     }
@@ -91,6 +93,7 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
 
     private fun doSearch(v: View) {
         val inputText = input.text.toString()
+        group_loading.visibility = View.VISIBLE
         v.hideKeyboard()
         launch {
             viewModel.getMovieByTitle(inputText)
