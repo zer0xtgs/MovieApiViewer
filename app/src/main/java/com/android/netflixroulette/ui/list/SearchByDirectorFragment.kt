@@ -35,7 +35,6 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.title = "Search by director"
         return inflater.inflate(R.layout.movie_list_fragment, container, false)
     }
 
@@ -97,8 +96,6 @@ class SearchByDirectorFragment : ScopedFragment(), KodeinAware, DirectorListAdap
         launch {
             viewModel.getMovieByDirectorList(item.id)
         }
-
-        viewModel.setTitle(item.name)
         view!!.hideKeyboard()
         this.findNavController()
             .navigate(

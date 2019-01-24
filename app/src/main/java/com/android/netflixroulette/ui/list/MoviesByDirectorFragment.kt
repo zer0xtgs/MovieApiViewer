@@ -33,7 +33,6 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.title = "Movies by director"
         return inflater.inflate(R.layout.movie_list_fragment, container, false)
     }
 
@@ -68,7 +67,6 @@ class MoviesByDirectorFragment : ScopedFragment(), KodeinAware, MovieListAdapter
 
     override fun onMovieItemClickListener(item: Movie) {
         viewModel.setSelectedMovie(item)
-        viewModel.setTitle(item.originalTitle)
         view!!.hideKeyboard()
         this.findNavController()
             .navigate(

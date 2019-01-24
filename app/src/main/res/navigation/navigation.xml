@@ -12,21 +12,21 @@
     <fragment android:id="@+id/savedMoviesFragment"
               android:name="com.android.netflixroulette.ui.list.SavedMoviesFragment"
               tools:layout="@layout/movie_list_fragment"
-    >
+              android:label="Saved Movies">
         <action android:id="@+id/action_savedMovies_to_savedDetail"
                 app:destination="@id/savedDetailFragment"/>
     </fragment>
 
     <fragment android:id="@+id/searchByTitleFragment"
               android:name="com.android.netflixroulette.ui.list.SearchByTitleFragment"
-              tools:layout="@layout/movie_list_fragment">
+              tools:layout="@layout/movie_list_fragment" android:label="Search by title">
         <action android:id="@+id/action_searchByTitle_to_searchByDetail"
                 app:destination="@id/searchByDetailFragment"/>
     </fragment>
 
     <fragment android:id="@+id/searchByDirectorFragment"
               android:name="com.android.netflixroulette.ui.list.SearchByDirectorFragment"
-              tools:layout="@layout/movie_list_fragment">
+              tools:layout="@layout/movie_list_fragment" android:label="Search by director">
         <action android:id="@+id/action_searchByDirector_to_moviesByDirector"
                 app:destination="@id/moviesByDirectorFragment"/>
     </fragment>
@@ -35,7 +35,7 @@
             tools:layout="@layout/movie_detail_fragment" android:id="@+id/savedDetailFragment"/>
     <fragment android:id="@+id/moviesByDirectorFragment"
               android:name="com.android.netflixroulette.ui.list.MoviesByDirectorFragment"
-    >
+              android:label="Movies by director">
         <action android:id="@+id/action_moviesByDirector_to_searchByDetail"
                 app:destination="@id/searchByDetailFragment"/>
     </fragment>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.GlideApp
@@ -39,7 +40,7 @@ class SavedDetailFragment : ScopedFragment(), KodeinAware {
         } ?: throw Exception("Invalid Activity")
 
         viewModel.selectedMovie.observe(this, Observer {
-            activity?.title = it.originalTitle
+            updateActionBarTitle(it.originalTitle)
 
             GlideApp.with(this)
                 .load("https://image.tmdb.org/t/p/w200" + it.posterPath)
@@ -54,5 +55,9 @@ class SavedDetailFragment : ScopedFragment(), KodeinAware {
 
         })
 
+    }
+
+    private fun updateActionBarTitle(title: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
     }
 }

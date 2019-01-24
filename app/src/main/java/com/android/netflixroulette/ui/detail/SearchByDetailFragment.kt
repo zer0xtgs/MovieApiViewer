@@ -3,6 +3,7 @@ package com.android.netflixroulette.ui.detail
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.android.netflixroulette.GlideApp
@@ -38,7 +39,7 @@ class SearchByDetailFragment : ScopedFragment(), KodeinAware {
         } ?: throw Exception("Invalid Activity")
 
         viewModel.selectedMovie.observe(this, Observer {
-            activity?.title = it.originalTitle
+            updateActionBarTitle(it.originalTitle)
 
             GlideApp.with(this)
                 .load("https://image.tmdb.org/t/p/w200" + it.posterPath)
@@ -68,6 +69,10 @@ class SearchByDetailFragment : ScopedFragment(), KodeinAware {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun updateActionBarTitle(title: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
     }
 
 

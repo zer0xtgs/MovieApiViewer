@@ -36,7 +36,6 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.title = "Search by title"
         return inflater.inflate(R.layout.movie_list_fragment, container, false)
     }
 
@@ -100,7 +99,6 @@ class SearchByTitleFragment : ScopedFragment(), KodeinAware, MovieListAdapter.Li
 
     override fun onMovieItemClickListener(item: Movie) {
         viewModel.setSelectedMovie(item)
-        viewModel.setTitle(item.originalTitle)
         view!!.hideKeyboard()
         this.findNavController()
             .navigate(

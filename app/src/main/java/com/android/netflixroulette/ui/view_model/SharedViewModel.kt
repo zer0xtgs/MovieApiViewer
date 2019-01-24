@@ -16,12 +16,6 @@ class SharedViewModel(
     val getMovieByDirectorResponse: LiveData<MoviesByDirectorResponse>
         get() = repository.getSearchByDirectorResponse()
 
-//    val selectedDirector = MutableLiveData<Director>()
-//
-//    fun setSelectedDirector(director: Director) {
-//        selectedDirector.value = director
-//    }
-
     suspend fun getDirector(name: String) = repository.getDirector(name)
 
     suspend fun getMovieByDirectorList(id : Long) = repository.getMovieByDirectorList(id)
@@ -37,8 +31,6 @@ class SharedViewModel(
 
     val selectedMovie = MutableLiveData<Movie>()
 
-    val dynamicTitle = MutableLiveData<String>()
-
     suspend fun getMovieByTitle(title: String) = repository.getMovieByTitleList(title)
 
     fun saveMovie(movie: Movie) = repository.saveMovie(movie)
@@ -47,7 +39,4 @@ class SharedViewModel(
         selectedMovie.value = movie
     }
 
-    fun setTitle(title: String) {
-        dynamicTitle.value = title
-    }
 }

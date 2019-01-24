@@ -34,7 +34,7 @@ abstract class MovieDatabase : RoomDatabase() {
                 context.applicationContext,
                 MovieDatabase::class.java, "movies.db"
             )
-                //todo remove on release
+                //wtodo remove on release
                 .fallbackToDestructiveMigration()
                 .build()
     }

@@ -33,7 +33,6 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.title = "Saved Movies"
         return inflater.inflate(R.layout.movie_list_fragment, container, false)
     }
 
@@ -68,7 +67,6 @@ class SavedMoviesFragment : ScopedFragment(), KodeinAware, MovieListAdapter.List
 
     override fun onMovieItemClickListener(item: Movie) {
         viewModel.setSelectedMovie(item)
-        viewModel.setTitle(item.originalTitle)
         this.findNavController()
             .navigate(
                 SavedMoviesFragmentDirections
